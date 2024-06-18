@@ -46,6 +46,9 @@ if direction == 'encode':
 else:
   decrypt(text, shift)
 
+
+# def caeser()
+
 #TODO-1: Import and print the logo from art.py when the program starts.
 #TODO-2: What if the user enters a shift that is greater than the number of letters in the alphabet?
 #Try running the program and entering a shift number of 45.
@@ -59,4 +62,4 @@ else:
 #e.g. Type 'yes' if you want to go again. Otherwise type 'no'.
 #If they type 'yes' then ask them for the direction/text/shift again and call the caesar() function again?
 #Hint: Try creating a while loop that continues to execute the program if the user types 'yes'. 
-#TODO-5: Refactor into one function
+# TODO-5: Refactor into one function
