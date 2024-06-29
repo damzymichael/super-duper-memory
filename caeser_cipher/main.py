@@ -43,4 +43,3 @@ while should_continue:
   if user_continue_preference == 'no':
     should_continue = False
     print('Goodbye!')
-
