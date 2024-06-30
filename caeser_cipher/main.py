@@ -9,6 +9,11 @@ alphabet = [
 print(logo)
 
 def caeser_cipher(start_text, shift_by, cipher_direction):
+  """Encrypts and decrypts a text\n
+    start_text = Initial text\n
+    shift_by = number to shift by\n
+    cipher_direction = 'encrypt/decrypt
+  """
   result_text = ''
   if cipher_direction == 'decode':
     shift_by *= -1
