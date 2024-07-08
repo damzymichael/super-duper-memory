@@ -29,12 +29,14 @@ operation_symbol = input("Pick an operation from the line above ")
 
 num2 = int(input("What's the second number? "))
 
-answer = operations[operation_symbol](num1, num2)
+answer1 = operations[operation_symbol](num1, num2)
 
-print(f"{num1} {operation_symbol} {num2} = {answer}")
+print(f"{num1} {operation_symbol} {num2} = {answer1}")
 
-operation_symbol = input("Pick another operation")
+operation_symbol = input("Pick another operation ")
 
 num3 = int(input("What's the next number? "))
 
-answer = operations[operation_symbol](answer, num3)
+answer2 = operations[operation_symbol](answer1, num3)
+
+print(f"{answer1} {operation_symbol} {num3} = {answer2}")
