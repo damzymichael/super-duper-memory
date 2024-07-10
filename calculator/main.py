@@ -41,14 +41,14 @@ num2 = int(input("What's the next number? "))
 
 answer = compute(num1, num2, operation_symbol)
 
-keepComputing = True
+keep_computing = True
 
-while keepComputing:
+while keep_computing:
   keepComputingPreference = input("Type 'y' to continue calculating, or type 'n' to exit.: \n")
 
   if keepComputingPreference == 'n':
 
-    keepComputing = False
+    keep_computing = False
 
     exit()
   else:
