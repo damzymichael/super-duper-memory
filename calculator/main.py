@@ -20,23 +20,40 @@ def divide(n1, n2):
 
 operations = {"+" : add, "-": subtract, "*": multiply, "/": divide}
 
+answer = 0
+
+def compute(value1, value2, operation_symbol): 
+  answer = operations[operation_symbol](value1, value2)
+
+  print(f"{value1} {operation_symbol} {value2} = {answer}")
+
+  return answer
+
+
 num1 = int(input("What's the first number? "))
 
 for symbol in operations:
-  print(symbol)
+    print(symbol)
 
-operation_symbol = input("Pick an operation from the line above ")
+operation_symbol = input("Pick an operation: ")
 
-num2 = int(input("What's the second number? "))
+num2 = int(input("What's the next number? "))
 
-answer1 = operations[operation_symbol](num1, num2)
+answer = compute(num1, num2, operation_symbol)
 
-print(f"{num1} {operation_symbol} {num2} = {answer1}")
+keepComputing = True
 
-operation_symbol = input("Pick another operation ")
+while keepComputing:
+  keepComputingPreference = input("Type 'y' to continue calculating, or type 'n' to exit.: \n")
 
-num3 = int(input("What's the next number? "))
+  if keepComputingPreference == 'n':
 
-answer2 = operations[operation_symbol](answer1, num3)
+    keepComputing = False
 
-print(f"{answer1} {operation_symbol} {num3} = {answer2}")
+    exit()
+  else:
+    operation_symbol = input("Pick an operation ")
+
+    num2 = int(input("What's the next number? "))
+
+    answer = compute(answer, num2, operation_symbol)
