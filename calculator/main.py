@@ -20,40 +20,40 @@ def divide(n1, n2):
 
 operations = {"+" : add, "-": subtract, "*": multiply, "/": divide}
 
-answer = 0
+def calculator():
+  answer = 0
 
-def compute(value1, value2, operation_symbol): 
-  answer = operations[operation_symbol](value1, value2)
+  def compute(value1): 
+    operation_symbol = input("Pick an operation: ")
 
-  print(f"{value1} {operation_symbol} {value2} = {answer}")
+    value2 = float(input("What's the next number? "))
 
-  return answer
+    answer = operations[operation_symbol](value1, value2)
+
+    print(f"{value1} {operation_symbol} {value2} = {answer}")
+
+    return answer
 
 
-num1 = int(input("What's the first number? "))
+  num1 = float(input("What's the first number? "))
 
-for symbol in operations:
-    print(symbol)
+  for symbol in operations:
+      print(symbol)
 
-operation_symbol = input("Pick an operation: ")
+  answer = compute(num1)
 
-num2 = int(input("What's the next number? "))
+  keep_computing = True
 
-answer = compute(num1, num2, operation_symbol)
+  while keep_computing:
+    keep_computing_preference = input("Type 'y' to continue calculating, type 'r' to restart, type 'n' to exit: \n")
 
-keep_computing = True
+    if keep_computing_preference == 'r':
+      keep_computing = False
+      # Recursion
+      calculator()
+    elif keep_computing_preference == 'n':
+      exit()
+    else:
+      answer = compute(answer)
 
-while keep_computing:
-  keepComputingPreference = input("Type 'y' to continue calculating, or type 'n' to exit.: \n")
-
-  if keepComputingPreference == 'n':
-
-    keep_computing = False
-
-    exit()
-  else:
-    operation_symbol = input("Pick an operation ")
-
-    num2 = int(input("What's the next number? "))
-
-    answer = compute(answer, num2, operation_symbol)
+calculator()
