@@ -1,67 +1,71 @@
 from art import logo
 import random
+import os
 
-# print(logo)
+def deal_card():
+  """Returns a random card from the deck"""
+  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  return random.choice(cards)
 
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+def calculate_score(cards):
+   if sum(cards) == 21 and len(cards) == 2:
+      return 0
+   if 11 in cards and sum(cards) > 21:
+      cards.remove(11)
+      cards.append(1)
+   return sum(cards)
 
-def generate_two_cards():
-   return [random.choice(cards), random.choice(cards)]
+def compare(user_score, computer_score):
+   if user_score == computer_score:
+      return "Draw 🙃"
+   elif computer_score == 0:
+      return "Lose, opponent has Blackjack 😱"
+   elif user_score == 0:
+      return "Win with a blackjack! 😎"
+   elif user_score > 21:
+      return "You went over, you lose ☹"
+   elif computer_score > 21:
+      return "Opponent went over, You win 😃"
+   elif user_score > computer_score:
+      return "You win 😃"
+   else: 
+      return "You lose"
 
-computer = generate_two_cards()
-user =  generate_two_cards()
-
-def print_current_values(userValues, computerValues):
-   print(f"Your cards {userValues}, current score: {sum(userValues)}")
-   print(f"Computer's first card {computerValues[0]}")
-
-def print_final_values(userValues, computerValues):
-   print(f"Your final hand {userValues}, final score: {sum(userValues)}")
-   print(f"Computer's final hand {computerValues}, final score: {sum(computerValues)}")
-
-print_current_values(user, computer)
-
-keep_playing = True
-get_new_card = True
-
-#Todo Reset values when new game is requested
-def end_game():
-   global keep_playing
-   global get_new_card
-   get_new_card = False
-   replay =  input("Do you want to play another game of blackjack? 'y' or 'n' \n")
-   if replay.lower() == 'y':
-      keep_playing = True
-      get_new_card = True
-      play_game()
-   else:
-      exit()
-
-# Todo Computer loses if computer goes above 21
 def play_game():
-   while get_new_card:
-      continue_play = input("Type 'y' to get another card, type 'n' to pass: \n")
-      if sum(computer) < 17:
-         computer.append(random.choice(cards))
-      if continue_play.lower() == 'y':
-         user.append(random.choice(cards))
-         if sum(user) > 21:
-            print_final_values(user, computer)
-            print('You lose')
-            # get_new_card = False
-            end_game()
-         else:
-            print_current_values(user, computer)
-      else:
-         print_final_values(user, computer)
-         if sum(user) > sum(computer):
-            print('You win')
-         elif sum(computer) > sum(user):
-            print('Comuter wins')
-         else:
-            print("It's a draw")
-         # get_new_card = False
-         end_game()
+   print(logo)
 
-while keep_playing:
+   user_cards = []
+   computer_cards = []
+   is_game_over = False
+
+   for _ in range(2):
+      user_cards.append(deal_card())
+      computer_cards.append(deal_card())
+
+   while not is_game_over:
+      user_score = calculate_score(user_cards)
+      computer_score = calculate_score(computer_cards)
+
+      print(f"Your cards: {user_cards}, current score: {user_score}")
+      print(f"Computer first card: {computer_cards[0]}")
+
+      if user_score == 0 or computer_score == 0 or user_score > 21:
+         is_game_over = True
+      else:
+         user_should_deal = input("Type 'y' to get another card, type 'n' to pass \n")
+         if user_should_deal == 'y':
+            user_cards.append(deal_card())
+         else:
+            is_game_over = True
+
+   while computer_score != 0 and computer_score < 17:
+      computer_cards.append(deal_card())
+      computer_score = calculate_score(computer_cards)
+
+   print(f"Your final hand: {user_cards}, final score: {user_score}")
+   print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+   print(compare(user_score, computer_score))
+
+while input("Do you want to play a game of blackjack? Type 'y' or 'n': ") == "y":
+   os.system('cls')
    play_game()
