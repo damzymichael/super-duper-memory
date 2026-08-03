@@ -23,10 +23,8 @@ MENU = {
         "cost": 3.0,
     }
 }
-
-profit = 0
-
 resources = {"water": 300, "milk": 200,  "coffee": 100}
+profit = 0
 
 """
 1 Penny -> 1 cent -> $0.01
@@ -36,12 +34,7 @@ resources = {"water": 300, "milk": 200,  "coffee": 100}
 """
 conversion = {"pennies": 0.01, "dimes": 0.1, "nickles": 0.05, "quarters": 0.25}
 
-'''
-1 penny = $0.01
-'''
-
 is_coffee_machine_active = True
-
 while is_coffee_machine_active:
     user_choice = input("What would you like? (espresso, latte, cappuccino)\nYou can also type report to see our resources: ").strip()
 
