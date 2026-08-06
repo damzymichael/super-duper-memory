@@ -62,7 +62,7 @@ class Coffee_Machine:
         is_invalid_input = False
         return total
       except:
-        invalid_user_input = True
+        is_invalid_input = True
         print("Invalid cost input, Re-enter inputs")
 
   def is_cost_covered(self, user_choice, total):
